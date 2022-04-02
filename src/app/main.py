@@ -4,7 +4,7 @@ from textblob import TextBlob
 import pickle
 import os
 
-reg = None
+reg = pickle.load(open('models/reg.pkl', 'rb'))
 app = Flask(__name__)  # create an instance of the Flask class
 app.config['BASIC_AUTH_USERNAME'] = os.environ.get('BASIC_AUTH_USERNAME')
 app.config['BASIC_AUTH_PASSWORD'] = os.environ.get('BASIC_AUTH_PASSWORD')
@@ -38,7 +38,6 @@ def price():
 
 
 if __name__ == '__main__':
-    reg = pickle.load(open('../../models/reg.pkl', 'rb'))
     app.run(
         debug=True,
         host='0.0.0.0' 
